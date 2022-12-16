@@ -6,3 +6,6 @@
 
 ### MAC System ###
 .DS_Store
+
+### gem file ###
+Gemfile.lock
