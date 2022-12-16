@@ -1,1 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-12-16T20:38:17+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">CupCui</title><subtitle>崔杯杯的个人博客</subtitle><author><name>Zhuang Ma</name></author></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-12-16T20:53:12+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">CupCui</title><subtitle>崔杯杯的个人博客</subtitle><author><name>CupCui</name></author><entry><title type="html">设计模式学习之策略模式</title><link href="http://localhost:4000/2013/11/23/HFDP-Notes1/" rel="alternate" type="text/html" title="设计模式学习之策略模式" /><published>2013-11-23T00:00:00+08:00</published><updated>2013-11-23T00:00:00+08:00</updated><id>http://localhost:4000/2013/11/23/HFDP-Notes1</id><content type="html" xml:base="http://localhost:4000/2013/11/23/HFDP-Notes1/">&lt;p&gt;&lt;strong&gt;如下内容是学习《Head First 设计模式》第一部分《设计模式入门》所得，主要就是一些原文的摘抄和少量自己的总结。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;OO 原则是我们的目标，设计模式是我们的做法。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;oo-原则&quot;&gt;OO 原则&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;封装变化。&lt;/li&gt;
+  &lt;li&gt;多用组合，少用继承。&lt;/li&gt;
+  &lt;li&gt;针对接口编程，不针对实现编程。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在这一部分，书中通过讲解对一个简单 SimUDuck 根据新需求的重新设计，不断优化过程中，顺理成章地将策略模式讲解清楚了，策略模式「严肃」定义：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;策略模式定义了算法族，分别封装起来让它们之间可以相互替换，此模式让算法的变化独立于使用算法的用户。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这个模式的存在以前上面的设计原则第一条直接刷新了我之前对 OO 设计的一个认识：&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;抽象出不变的作为基类，将不同的特化到子类中去。&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;这个认识本身也没错，但是显然需要结合&lt;em&gt;封装变化&lt;/em&gt;的设计原则使用才能适用更多场景，设计出弹性更好的系统来。&lt;/p&gt;
+
+&lt;p&gt;书中的示例代码都是使用 java，我用 C++ 将策略模式示例重新实现了一下，源码放在&lt;a href=&quot;https://github.com/mzlogin/DesignPatternDemos&quot; target=&quot;_blank&quot;&gt;这个 Solution 的 StrategyPattern 工程里&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;UML 类图如下，Visio 原图见&lt;a href=&quot;https://github.com/mzlogin/DesignPatternDemos/blob/master/DesignPatternDemos.vsd&quot; target=&quot;_blank&quot;&gt;『这里』&lt;/a&gt;：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/designpattern/StrategyPattern.png&quot; width=&quot;80%&quot; alt=&quot;Strategy Pattern UML Class Diagram&quot; /&gt;&lt;/p&gt;</content><author><name>CupCui</name></author><category term="DesignPattern" /><summary type="html">如下内容是学习《Head First 设计模式》第一部分《设计模式入门》所得，主要就是一些原文的摘抄和少量自己的总结。</summary></entry></feed>
