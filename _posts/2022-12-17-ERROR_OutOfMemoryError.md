@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 问题: 查询数据时数据量过大导致GC内存泄漏日志, java.lang.OutOfMemoryError: GC overhead limit exceeded
-categories: [ERROR]
-description: 问题: 查询数据时数据量过大导致GC内存泄漏日志, java.lang.OutOfMemoryError: GC overhead limit exceeded
+title: 问题 查询数据时数据量过大导致GC内存泄漏日志, java.lang.OutOfMemoryError GC overhead limit exceeded
+categories: ERROR
+description: 问题 查询数据时数据量过大导致GC内存泄漏日志, java.lang.OutOfMemoryError GC overhead limit exceeded
 keywords: ERROR, OutOfMemoryError, GC
 ---
 

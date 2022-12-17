@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 问题: ES 查询时报错 I/O 异常: java.lang.IllegalStateException: Request cannot be executed; I/O reactor status: STOPPED
-categories: [ERROR, ElasticSearch]
-description: 问题: ES 查询时报错 I/O 异常: java.lang.IllegalStateException: Request cannot be executed; I/O reactor status: STOPPED
-keywords: ERROR, ElasticSearch, I/O reactor status: STOPPED
+title: 问题 ES 查询时报错 I/O 异常 java.lang.IllegalStateException Request cannot be executed; I/O reactor status STOPPED
+categories: ERROR, ElasticSearch
+description: 问题 ES 查询时报错 I/O 异常 java.lang.IllegalStateException Request cannot be executed; I/O reactor status STOPPED
+keywords: ERROR, ElasticSearch, I/O reactor status STOPPED
 ---
 
 #### 问题: ES 查询时报错 I/O 异常: java.lang.IllegalStateException: Request cannot be executed; I/O reactor status: STOPPED
