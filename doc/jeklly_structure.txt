@@ -1,0 +1,13 @@
+文件 / 目录	描述
+_config.yml	配置信息。
+_drafts	存放未发布的文章。
+_includes	可以重用的代码内容。
+_layouts	布局是包裹在文章外部的模板。
+_posts	存放博客内容。
+_wiki 文件夹中是我已发布的 wiki 页面。
+_fragments 文件夹中是我已发布的短文片段。
+images 文件夹中是我的文章和页面里使用的图片。
+_data	存放数据文件。
+_site	最终生成的静态网页，最好将这个目录放入 .gitignore 文件中。
+.jekyll-metadata	帮助 Jekyll 跟踪哪些文件从上次建立站点开始到现在没有被修改，哪些文件需要在下一次站点建立时重新生成，最好放入 .gitignore 文件中。
+index.html	主页。
