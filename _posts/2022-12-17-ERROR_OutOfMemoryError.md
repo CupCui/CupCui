@@ -9,7 +9,7 @@ keywords: ERROR, OutOfMemoryError, GC
 
 #### 问题: 查询数据时数据量过大导致GC内存泄漏日志, java.lang.OutOfMemoryError: GC overhead limit exceeded
 
-**\[GC\]** **\[OutOfMemoryError\]** **\[ERROR\]**
+**[GC]** **[OutOfMemoryError]** **[ERROR]**
 
 问题: 使用fastjson解析时内存泄漏,java.lang.OutOfMemoryError: GC overhead limit exceeded
 
