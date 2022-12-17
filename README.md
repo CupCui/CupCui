@@ -1,6 +1,6 @@
 # CupCui
 
-我的个人博客：<https://cupcui.github.io/CupCui/>
+我的个人博客：<https://cupcui.github.io>
 
 ## 联系我
 
