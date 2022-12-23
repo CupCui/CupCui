@@ -119,6 +119,8 @@ plugins:
     - jekyll-feed
     - jemoji
 #     - jekyll-mentions
+    - jekyll-seo-tag
+
 collections:
     wiki:
         output: true
