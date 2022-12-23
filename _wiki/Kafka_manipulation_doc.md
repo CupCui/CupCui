@@ -1,16 +1,14 @@
-
-
 ---
 
 layout: wiki
 
-title: Kafka操作文档
+title: Kafka常用操作
 
 cate1: Tools
 
 cate2: Editor
 
-description: Kafka操作文档
+description: Kafka常用操作
 
 keywords: Kafka
 

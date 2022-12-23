@@ -1,16 +1,14 @@
-
-
 ---
 
 layout: wiki
 
-title: Redis操作文档
+title: Redis常用操作
 
 cate1: Tools
 
 cate2: Editor
 
-description: Redis操作文档
+description: Redis常用操作
 
 keywords: Redis
 
