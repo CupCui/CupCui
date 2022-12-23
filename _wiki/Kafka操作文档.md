@@ -1,10 +1,19 @@
+
+
 ---
+
 layout: wiki
-title: 010Kafka操作文档
+
+title: Kafka操作文档
+
 cate1: Tools
+
 cate2: Editor
+
 description: Kafka操作文档
+
 keywords: Kafka
+
 ---
 
 
@@ -15,7 +24,7 @@ keywords: Kafka
 
 
 
-#### 查看指定消费者的Lag值
+### 查看指定消费者的Lag值
 
 ```sh
 # 查看指定消费者的Lag值
@@ -27,7 +36,7 @@ keywords: Kafka
 
 
 
-#### 创建 Kafka 主题
+### 创建 Kafka 主题
 
 ```sh
 # 创建 Kafka 主题
@@ -39,7 +48,7 @@ bin/kafka-topics.sh --bootstrap-server 192.168.95.114:59092 --create --topic top
 
 
 
-#### 修改主题分区
+### 修改主题分区
 
 ```sh
 # 修改主题分区
@@ -48,7 +57,7 @@ bin/kafka-topics.sh --bootstrap-server broker_host:port --alter --topic <topic_n
 
 
 
-#### 设置主题级别参数 max.message.bytes
+### 设置主题级别参数 max.message.bytes
 
 ```sh
 # 设置主题级别参数 max.message.bytes
@@ -57,7 +66,7 @@ bin/kafka-configs.sh --zookeeper zookeeper_host:port --entity-type topics --enti
 
 
 
-#### 删除主题
+### 删除主题
 
 ```sh
 # 删除主题
@@ -68,7 +77,7 @@ bin/kafka-topics.sh --bootstrap-server broker_host:port --delete  --topic <topic
 
 
 
-#### 配置动态 Broker 参数 unclean.leader.election.enable
+### 配置动态 Broker 参数 unclean.leader.election.enable
 
 ```sh
 # 在集群层面设置全局值(即设置 cluster-wide 范围值)
@@ -84,7 +93,7 @@ Default config for brokers in the cluster are:
 
 
 
-#### 配置动态设置 per-broker 范围参数
+### 配置动态设置 per-broker 范围参数
 
 ```sh
 # 设置 per-broker 范围参数
@@ -100,7 +109,7 @@ Configs for broker 1 are:
 
 
 
-#### 删除 cluster-wide 范围参数或 per-broker 范围参数
+### 删除 cluster-wide 范围参数或 per-broker 范围参数
 
 ```sh
 # 删除 cluster-wide 范围参数
@@ -115,7 +124,7 @@ Completed updating config for broker: 1.
 
 
 
-#### 查看 kafka 版本
+### 查看 kafka 版本
 
 ```sh
 # 查看 kafka 版本
