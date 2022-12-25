@@ -7,3 +7,6 @@ gem "webrick", "~> 1.7"
 
 # Jekyll SEO Tag
 gem 'jekyll-seo-tag'
+
+# Jekyll sitemap
+gem 'jekyll-sitemap'
