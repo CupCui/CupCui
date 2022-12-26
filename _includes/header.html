@@ -91,6 +91,10 @@
       gtag('config', '{{ site.google.analytics_id }}');
     </script>
     {% endif %}
+
+    {% seo %}
+    <meta name="google-site-verification" content="xjcKcDDTpGOpJDvRZZ8bMbyds8nvWWZ2gfxFWTt0JF0" />
+
 </head>
 <body class="{{ page.class }}" data-mz="{{ page.class }}">
     <header class="site-header">
@@ -108,7 +112,5 @@
                 <a class="mobile-hidden" href="{{ site.url }}{{ site.subscribe_rss }}"><span class="octicon octicon-rss" style="color:orange;"></span></a>
             </nav>
         </div>
-        {% seo %}
-        <meta name="google-site-verification" content="xjcKcDDTpGOpJDvRZZ8bMbyds8nvWWZ2gfxFWTt0JF0" />
     </header>
     <!-- / header -->
