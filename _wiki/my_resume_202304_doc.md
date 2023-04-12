@@ -14,7 +14,6 @@ keywords: Resume
 
 ---
 
-
 # Interview
 
 
@@ -437,11 +436,26 @@ HR：
 IT资产：
 
 * Linux、Windows、Tomcat、MySQL、Kafka、Redis
+  * 资源信息：
+    * Linux：CPU核数、内存总量、操作系统
+    * 文件系统：挂载点、所属逻辑卷
+  * 监控信息：
+    * Linux：CPU利用率、内存利用率、Ping状态
+    * MySQL：会话数、连接状态
 * VMware、华为MO6、华为云FusionComputer、中兴云
+  * VMware云、VMware虚拟机、物理机、虚拟磁盘网卡
 * 运营商的5G消息、5G短信网关、骨干网、核心网
 * 路由器、交换机、网络接口
 * 小型机、机架服务器
 * 平板电脑、打印机
+
+
+
+
+
+
+
+
 
 
 
