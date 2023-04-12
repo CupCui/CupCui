@@ -15,11 +15,6 @@ keywords: Resume
 ---
 
 
-
-
-
-# My Resume 2023 Interview
-
 # Interview
 
 
@@ -29,9 +24,13 @@ keywords: Resume
 * 使用Redis作为缓存，减小数据库访问压力。
 * Elasticsearch作为搜索引擎搭建搜索平台，支持对所有字段的搜索。
 * 使用Kafka作为消息队列，来减小服务间耦合，填谷削峰。
-* 资源权限控制、资源变更操作历史、资源关系topo、采集和监控、开放的模型管理
+* 资源权限控制、资源变更操作历史、资源关系topo、采集和监控、开放的模型管理。
 
-Mysql索引：B+树
+
+
+
+
+
 
 Redis、唯一ID、乐观锁
 
@@ -41,7 +40,7 @@ ReEntrantLock（AQS）：非公平所
 
 JMM：内存模型
 
-Voltain关键字：通过总键监听，共享变量可见性，有序性，禁之指令重排。
+Voltain关键字：共享变量可见性，有序性，禁之指令重排。
 
 OOM、STW
 
@@ -95,17 +94,83 @@ Stream常用方法
 
 如何对集合排序？如何使用stream对集合排序？
 
+Spring 中 @Transaction 原理？
+
+Equals 和 Hash，项目使用到重写Equals了吗？
+
+Spring 中用到的设计模式有哪些？
+
+了解和使用过反射吗？
 
 
-MyBatis中引用对象如何查询，如何映射到对象上？
+
+MyBatis中引用对象如何查询，如何映射到对象上？多对多关系如何映射的？
 
 GateWay登录流程？
 
-Java IO 模型？
-
 Kafka多副本机制，以及可能存在的问题？
 
-Java反射机制和使用？
+synchronize作用在方法上，创建两个对象调用该方法，会有线程安全问题吗？
+
+SpringCloud各个组件使用过吗？
+
+线程池核心线程数根据什么配置？
+
+
+
+
+
+### MySQL 索引模型
+
+InnoDB 使用了 B+ 树索引模型。
+
+
+
+聚簇索引（clustered index）：主键索引的叶子节点存的是整行数据。在 InnoDB 里，主键索引也被称为聚簇索引（clustered index）。
+
+二级索引（secondary index）：非主键索引的叶子节点内容是主键的值。在 InnoDB 里，非主键索引也被称为二级索引（secondary index）。
+
+
+
+普通索引查询方式需要回表。
+
+
+
+索引优化，如何避免回表?
+
+* 覆盖索引可以减少树的搜索次数，显著提升查询性能
+
+
+
+[04 深入浅出索引（上）](https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2/04%20%20%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%8A%EF%BC%89.md)
+
+[05 深入浅出索引（下）](https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2/05%20%20%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%8B%EF%BC%89.md)
+
+
+
+
+
+### Java IO 模型
+
+BIO、NIO、NIO 2（AIO）。
+
+BIO：传统的 java.io 包，它基于流模型实现。交互方式是同步、阻塞的方式，在读、写动作完成之前，线程会一直阻塞在那里。
+
+NIO：可以构建多路复用的、同步非阻塞 IO 程序。
+
+NIO 2：异步 IO 操作基于事件和回调机制。
+
+
+
+[Java提供了哪些IO方式？ NIO如何实现多路复用？](https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/Java%20%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/11%20%20Java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F%EF%BC%9F%20NIO%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%EF%BC%9F-%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4.md)
+
+
+
+### Java反射机制和使用
+
+[自己动手实现springboot运行时新增/更新外部接口](https://juejin.cn/post/6962828391116439565)
+
+
 
 
 
@@ -140,6 +205,28 @@ Spring事物传播特性、事物隔离级别？Spring事物传播特性？
 > 脏读（Dirty reads）——脏读发生在一个事务读取了另一个事务改写但尚未提交的数据时。如果改写在稍后被回滚了，那么第一个事务获取的数据就是无效的。
 > 不可重复读（Nonrepeatable read）——不可重复读发生在一个事务执行相同的查询两次或两次以上，但是每次都得到不同的数据时。这通常是因为另一个并发事务在两次查询期间进行了更新。
 > 幻读（Phantom read）——幻读发生在一个事务（T1）读取了几行数据，接着另一个并发事务（T2）插入了一些数据时。在随后的查询中，第一个事务（T1）就会发现多了一些原本不存在的记录。
+
+
+
+### 如何使用 Spring Boot 实现全局异常处理？
+
+使用 `@ControllerAdvice` 和 `@ExceptionHandler` 注解处理全局异常。
+
+```java
+@ControllerAdvice
+@ResponseBody
+public class GlobalExceptionHandler {
+    @ExceptionHandler(value = Exception.class)
+    public ResponseEntity exceptionHandler(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod, Exception e) {
+      printStackTrace(request, handlerMethod, e);
+        
+        ResponseEntity<Object> resEnt = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return resEnt;
+    }
+}
+```
+
+
 
 
 
@@ -192,7 +279,7 @@ VUE
 
 Redis用途：
 
-* 作为缓冲
+* 作为缓存
 
 * 作为消息队列
   * 消息保序：使用List类型，LPUSH、RPOP（BRPOP阻塞式读取）
@@ -271,9 +358,15 @@ MySQL 脏读、不可重复读、幻读： [MySQL中的幻读，你真的理解�
 
 
 
-## 项目/自我介绍
+## 项目介绍/自我介绍
 
-### 崔光浩项目介绍
+### My自我介绍
+
+**配置资源监控平台**
+
+您好，我叫xxx。20年毕业。目前在xxx公司，一直到现在。我所在的是数字化部研发组，负责的是 **资源管理与全栈监控** 业务。这块业务的目标是 支撑 IT、CT、IOT 相关资源的管理与监控，主要解决资源配置没有统一管理、监控问题。我个人在其中负责的是 配置资源管理 模块的产品，负责核心业务代码编写，负责带领指导新人。我的大致情况是这样。
+
+### My项目介绍
 
 - 首先他要解决的问题是，资源资产配置管理与监控。公司的资产资源配置没有统一管理，统一监控。
 - 复杂性在于系统间数据传输，大数据量采集处理。
@@ -281,44 +374,76 @@ MySQL 脏读、不可重复读、幻读： [MySQL中的幻读，你真的理解�
 
 
 
-### 崔光浩自我介绍
-
-**配置资源监控平台**
-
-您好，我叫崔光浩。20年毕业。目前在神州泰岳公司，一直到现在。我所在的是数字化部研发组，负责的是 **资源管理与全栈监控** 业务。这块业务的目标是 支撑IT相关资源的管理与监控，主要解决资源配置孤岛，资源统一管理问题，同时配合对资源采集与监控。我个人在其中负责的是 配置资源管理 模块的产品，负责核心业务代码编写，负责带领指导新人。我的大致情况是这样。
-
 
 
 
 
 ## 有什么想问的
 
-技术
+技术：
 
+* 项目或产品中使用到的技术，是微服务吗
 * 产品项目进度或所处阶段，以及未来1年的规划。
+* 小组整体氛围，平时加班情况
+* 有没有什么技术培训项目？贵公司的晋升机制是什么样的？贵公司业务及战略的未来发展？
+* 公司文化是什么？
+*
 
+HR：
+
+* 有13薪或年终奖吗？
+* 公司规模或公司发展方向？
 * 平时加班情况？
 
-* 项目或产品中使用到的技术？
-
-HR
-
-* 有13薪吗？
-* 公司规模？
 
 
 
 
+## 你的优点和缺点是什么？
+
+优点：
+
+* 热爱技术，喜欢思考，平时会通过视频和文章学习技术
+* 喜欢分享，在线问题文档，Code Review，分享技术
+* 追求效率，Jenkins构建部署
+
+缺点：
+
+* 性格不够外向
+* 语言表达能力不够好
 
 
 
-2.6 你的缺点是什么
 
-答:
 
-不擅长讲解和用户打交道,社交焦虑症.
+## 在这里工作你喜欢什么？
 
-稳重负责、追求效率(提高电脑性能、多个显示器)、喜欢思考.
+我从我所做的工作中获得了满足。
+
+我喜欢与真正聪明，友好的同事合作。
+
+尊重工程技术。
+
+
+
+## 讲个笑话？
+
+“Knock, knock. Who’s there? Hire. Hire who? Hire me！”
+
+
+
+## 配置资源监控平台
+
+IT资产：
+
+* Linux、Windows、Tomcat、MySQL、Kafka、Redis
+* VMware、华为MO6、华为云FusionComputer、中兴云
+* 运营商的5G消息、5G短信网关、骨干网、核心网
+* 路由器、交换机、网络接口
+* 小型机、机架服务器
+* 平板电脑、打印机
+
+
 
 
 
