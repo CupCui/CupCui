@@ -17,8 +17,15 @@ keywords: Resume
 # Interview
 
 
+# Interview_Java_总结篇
 
-配置资源管理亮点：
+
+
+### 产品
+
+#### 产品亮点
+
+CMDB配置资源管理亮点：
 
 * 使用Redis作为缓存，减小数据库访问压力。
 * Elasticsearch作为搜索引擎搭建搜索平台，支持对所有字段的搜索。
@@ -29,13 +36,15 @@ keywords: Resume
 
 
 
+### Interview
 
+#### 面试真题
 
 Redis、唯一ID、乐观锁
 
-Synchronic（偏向锁）：公平锁
+Synchronic（偏向锁）：非公平锁
 
-ReEntrantLock（AQS）：非公平所
+ReEntrantLock（AQS）：非公平锁/公平锁
 
 JMM：内存模型
 
@@ -109,11 +118,67 @@ GateWay登录流程？
 
 Kafka多副本机制，以及可能存在的问题？
 
+Kafka自动提交和手动提交有什么区别？
+
 synchronize作用在方法上，创建两个对象调用该方法，会有线程安全问题吗？
+
+Sentinel限流是怎么处理的？
+
+
+
+
+
+
+
+###### Java
+
+线程池核心线程数根据什么配置？
+
+Synchronized 同步锁对普通方法和静态方法的修饰有什么区别？
+
+创建内部类的方式？
+
+
+
+
+
+###### 设计模式与算法
+
+用到过哪些设计模式？
+
+
+
+
+
+###### Spring
+
+Spring注解@Transaction事物隔离级别传播特性，在项目中实际使用到的注解？
+
+Spring有哪些注解，Spring注解和非Spring注解？
+
+微服务化时如何对服务进行拆分？
 
 SpringCloud各个组件使用过吗？
 
-线程池核心线程数根据什么配置？
+Maven中jar包冲突怎么解决，怎么引入本地jar包？
+
+
+
+###### 组件
+
+Eureka是数据还是服务，服务宕机了怎么办？
+
+Redis实际使用到哪些数据结构？
+
+Redis与MySQL双写一致性如何保证？
+
+* ES常用关键字 match match_all，ES内置分词器？
+
+###### MySQL
+
+MySQL左外链接Left Join On，JOIN默认是内连接还是外链接？
+
+查询总分大于100的学生和每一科都超过60分的学生
 
 
 
@@ -355,6 +420,12 @@ MySQL 脏读、不可重复读、幻读： [MySQL中的幻读，你真的理解�
 
 
 
+[查询总分大于100的学生和每一科都超过60分的学生](https://blog.csdn.net/qq_36004234/article/details/123522933)
+
+![img](https://onecup-image.oss-cn-beijing.aliyuncs.com/imgs/typora/202310270813857.png)
+
+
+
 
 
 ## 项目介绍/自我介绍
@@ -363,7 +434,9 @@ MySQL 脏读、不可重复读、幻读： [MySQL中的幻读，你真的理解�
 
 **配置资源监控平台**
 
-您好，我叫xxx。20年毕业。目前在xxx公司，一直到现在。我所在的是数字化部研发组，负责的是 **资源管理与全栈监控** 业务。这块业务的目标是 支撑 IT、CT、IOT 相关资源的管理与监控，主要解决资源配置没有统一管理、监控问题。我个人在其中负责的是 配置资源管理 模块的产品，负责核心业务代码编写，负责带领指导新人。我的大致情况是这样。
+领导您好，我叫xxx。20年毕业。上家公司是在xxx公司，从事Java后端开发。我所在的是数字化部研发组，负责的是 **资源管理与全栈监控** 业务。这块业务的目标是 支撑 IT、CT、IOT 相关资源的管理与监控，主要解决资源配置没有统一管理、监控问题。我个人在其中负责的是 配置资源管理 模块的产品，负责核心业务代码编写，负责带领指导新人。我的大致情况是这样。
+
+
 
 ### My项目介绍
 
@@ -392,7 +465,8 @@ HR：
 
 * 有13薪或年终奖吗？
 * 公司规模或公司发展方向？
-* 平时加班情况？
+* 平时加班情况？加班车费报销？
+* 假期福利
 
 
 
@@ -442,7 +516,7 @@ IT资产：
   * 监控信息：
     * Linux：CPU利用率、内存利用率、Ping状态
     * MySQL：会话数、连接状态
-* VMware、华为MO6、华为云FusionComputer、中兴云
+* VMware、华为MO6、华为云、中兴云
   * VMware云、VMware虚拟机、物理机、虚拟磁盘网卡
 * 运营商的5G消息、5G短信网关、骨干网、核心网
 * 路由器、交换机、网络接口
@@ -453,11 +527,243 @@ IT资产：
 
 
 
+### 面试题
+
+
+
+#### Spring
+
+###### SpringBoot在项目中都使用到哪些注解？
+
+```Java
+@PropertySource(value = {"firm-model.properties"}, encoding = "UTF-8", ignoreResourceNotFound = true)
+
+```
+
+###### 自定义注解
+
+```java
+// 定义注解
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD, ElementType.TYPE})
+public @interface RedisLockAnnotation {
+    String LOCK_KEY();
+    int LOCK_TIME() default 1800;
+    boolean NEED_UNLOCK() default false;}
+
+// 通过AOP监听注解
+@Aspect
+public class RedisLockHander {
+    @Pointcut("@annotation(com.ultra.cmdb.annotation.RedisLockAnnotation)")
+    public void redisLock() {
+    
+    @Around("redisLock()")
+    public Object lock(ProceedingJoinPoint pjp) throws Throwable {
+            MethodSignature signature = (MethodSignature) pjp.getSignature();
+            Method method = signature.getMethod();
+            // 获取注解
+            RedisLockAnnotation annotation = method.getAnnotation(RedisLockAnnotation.class);
+            lockKey = annotation.LOCK_KEY();
+            	if (needUnlock) {              //需要锁
+                  hasLock = redisLockUtil.lock(lockKey, 10 * 60);
+
+    // 瞬时锁，如果获取不到锁 立刻返回获取锁失败
+    public boolean lock(String key, int seconds) {
+	      String address = getIpAddress();
+      	String result = jedis.set(lockKey, address, new SetParams().nx().ex(seconds));
+
+    // 同步所有厂商入库
+    @RedisLockAnnotation(LOCK_KEY = "SYNCFIRMMODEL", LOCK_TIME = 24 * 60 * 60)
+    public void sysAllFirm() {
+```
 
 
 
 
 
+#### 设计模式与算法
+
+###### 用到过哪些设计模式？
+
+单例模式
+
+```json
+纯Java项目中（CMDB SDK）：
+1. redis消息订阅（MsgSubscriManager extends JedisPubSub），使用单例模式
+2. 读取Apollo中配置，使用单例模式
+```
+
+策略模式
+
+[设计模式之----匹配器处理器模式（Matcher-Handler）的理解](https://blog.csdn.net/ws9029/article/details/117229616)
+
+```json
+策略模式的升级版（matcher-handler）,Matcher-Handler模式也是属于略模式的一种.
+isMatcher()
+prcoess()
+@Autowired
+private List<IResMsgHandle> resHandlers;
+```
+
+代理模式
+
+```json
+// 接口实例工厂，这里主要是用于提供接口的实例对象
+public class ServiceFactory<T> implements FactoryBean<T> {
+// 用于Spring动态注入自定义接口
+public class ServiceBeanDefinitionRegistry implements BeanDefinitionRegistryPostProcessor, ResourceLoaderAware, ApplicationContextAware {
+	  @Override
+    public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry)
+    		//这里一般我们是通过反射获取需要代理的接口的clazz列表
+        //比如判断包下面的类，或者通过某注解标注的类等等
+        Set<Class<?>> beanClazzs = scannerPackages("com.ultra.cmdb.dao");
+    
+
+// 动态代理，需要注意的是，这里用到的是JDK自带的动态代理，代理对象只能是接口，不能是类
+public class ServiceProxy<T> implements InvocationHandler {
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args)
+        Class<?> returnType = method.getReturnType();
+        Query annotation = method.getAnnotation(Query.class);
+```
+
+
+
+
+
+###### @Transaction事务注解
+
+@Transaction事务隔离级别传播特性，在项目中实际使用到的注解？
+
+@Transactional的propagation参数解释
+
+* 示例：@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+* 传播行为（propagation behavior）
+  * PROPAGATION_REQUIRED
+  * PROPAGATION_SUPPORTS
+  * PROPAGATION_MANDATORY
+  * PROPAGATION_REQUIRED_NEW
+  * PROPAGATION_NOT_SUPPORTED
+  * PROPAGATION_NEVER
+  * PROPAGATION_NESTED
+
+
+
+#### 组件
+
+
+
+###### Redis实际使用到哪些数据结构？
+
+* string
+
+  ```java
+  // 对String操作的命令: set(key, value)：给数据库中名称为key的string赋予值value
+  jedisCluster.set(key, value);
+  ```
+
+
+
+###### Redis作为消息队列使用
+
+* 消息队列
+
+  ```java
+  // 发送Redis消息
+  sendMsg(data, objType, opType);
+  	jedis.publish(preFix + ChannelName.FROM_CMDB.name(), opObj.toString());
+  
+  // 订阅消息
+  public class MsgSubscriber extends JedisPubSub implements ApplicationRunner{
+    		// 订阅信道
+  			jedis.subscribe(sub, channelName);
+   
+  	@Override
+  	public void onMessage(String channel, String message) {
+  		hdlMng.handleMsg(message);
+  	}
+  ```
+
+
+
+
+
+###### ES常用关键字 match match_all，ES内置分词器？
+
+关键字
+
+* `match_all`表示查询所有的数据
+
+* 在字段中搜索特定字词，可以使用`match`; 如下语句将查询address 字段中包含 mill 或者 lane的数据
+
+  ```bash
+  GET /bank/_search
+  {
+    "query": { "match": { "address": "mill lane" } }
+  }
+  ```
+
+* 查询段落匹配：match_phrase
+
+  如果我们希望查询的条件是 address字段中包含 “mill lane”，则可以使用`match_phrase`
+
+  ```bash
+  GET /bank/_search
+  {
+    "query": { "match_phrase": { "address": "mill lane" } }
+  }
+  ```
+
+* 使用`bool`查询来组合多个查询条件。
+
+* `must`, `should`, `must_not` 和 `filter` 都是`bool`查询的子句。那么`filter`和上述`query`子句有啥区别呢？
+
+* 查询条件：query or filter，query 上下文的条件是用来给文档打分的，匹配越好 _score 越高；filter 的条件只产生两种结果：符合与不符合，后者被过滤掉。
+
+* 聚合查询：Aggregation。aggs，avg
+
+* 模糊匹配：fuzzy
+
+* Term查询：term是代表完全匹配，也就是精确查询，搜索前不会再对搜索词进行分词拆解。
+
+  ```json
+  // 查询不到  "title": "love China",
+  {
+    "query": {
+      "term": {
+        "title": "love China"
+      }
+    }
+  }
+  // 执行发现无数据，从概念上看，term属于精确匹配，只能查单个词
+  ```
+
+完整语句
+
+* ```json
+  "query": {
+    "bool": {
+      "must": [
+        "match": {
+        	"state": "ND"
+        "filter": [
+          "term": {
+            "age": "40"
+        "range": {
+          "balance": {
+          "gte": 20000, "lte": 30000
+  ```
+
+
+
+Elasticsearch的内置分词器
+
+- Standard Analyzer - 默认分词器，按词切分，小写处理
+- Simple Analyzer - 按照非字母切分(符号被过滤), 小写处理
+- Whitespace Analyzer - 按照空格切分，不转小写
+- Keyword Analyzer - 不分词，直接将输入当作输出
+- Patter Analyzer - 正则表达式，默认\W+(非字符分割)
+- Customer Analyzer 自定义分词器
 
 
 
