@@ -14,8 +14,6 @@ keywords: Resume
 
 ---
 
-# Interview
-
 
 # Interview_Java_总结篇
 
@@ -28,9 +26,35 @@ keywords: Resume
 CMDB配置资源管理亮点：
 
 * 使用Redis作为缓存，减小数据库访问压力。
-* Elasticsearch作为搜索引擎搭建搜索平台，支持对所有字段的搜索。
+* Elasticsearch作为搜索引擎搭建搜索平台。
+  * 支持对所有字段的搜索。
+  *
 * 使用Kafka作为消息队列，来减小服务间耦合，填谷削峰。
-* 资源权限控制、资源变更操作历史、资源关系topo、采集和监控、开放的模型管理。
+* 采集和监控
+* 模型模版管理，自定义模型模版
+* 资源关系topo，资源间关系的处理
+* 资源变更通知
+* 资源变更操作历史
+* 机房视图，地域视图
+* 资源权限管理、多租户管理
+* 对标蓝鲸监控、Prometheus
+* VUE
+
+
+
+低效无效资产清理：
+
+IP地址管理：
+
+
+
+#### 工作成就
+
+提升系统整体性能
+
+提高吞吐量
+
+提高系统稳定性
 
 
 
@@ -120,11 +144,11 @@ Kafka多副本机制，以及可能存在的问题？
 
 Kafka自动提交和手动提交有什么区别？
 
-synchronize作用在方法上，创建两个对象调用该方法，会有线程安全问题吗？
-
 Sentinel限流是怎么处理的？
 
+MyBatis使用的基本步骤？
 
+实际使用的代码自动生成工具？
 
 
 
@@ -136,7 +160,9 @@ Sentinel限流是怎么处理的？
 
 Synchronized 同步锁对普通方法和静态方法的修饰有什么区别？
 
-创建内部类的方式？
+Java创建内部类的方式？✅
+
+
 
 
 
@@ -144,7 +170,7 @@ Synchronized 同步锁对普通方法和静态方法的修饰有什么区别？
 
 ###### 设计模式与算法
 
-用到过哪些设计模式？
+[用到过哪些设计模式？](#用到过哪些设计模式？)
 
 
 
@@ -152,15 +178,11 @@ Synchronized 同步锁对普通方法和静态方法的修饰有什么区别？
 
 ###### Spring
 
-Spring注解@Transaction事物隔离级别传播特性，在项目中实际使用到的注解？
-
-Spring有哪些注解，Spring注解和非Spring注解？
+Spring注解@Transaction事务隔离级别传播特性，在项目中实际使用到的注解？✅
 
 微服务化时如何对服务进行拆分？
 
 SpringCloud各个组件使用过吗？
-
-Maven中jar包冲突怎么解决，怎么引入本地jar包？
 
 
 
@@ -170,11 +192,17 @@ Eureka是数据还是服务，服务宕机了怎么办？
 
 Redis实际使用到哪些数据结构？
 
-Redis与MySQL双写一致性如何保证？
+[Redis与MySQL双写一致性如何保证？](#Redis与MySQL双写一致性如何保证？)
 
-* ES常用关键字 match match_all，ES内置分词器？
+[ES常用关键字 match match_all，ES内置分词器？](#ES常用关键字 match match_all，ES内置分词器？)
+
+
 
 ###### MySQL
+
+[MySQL组合索引的使用规则？](#MySQL组合索引的使用规则？)
+
+
 
 MySQL左外链接Left Join On，JOIN默认是内连接还是外链接？
 
@@ -332,6 +360,18 @@ limit 3;
 设计模式
 
 VUE
+
+
+
+## 八股文汇总
+
+[Java核心技术面试精讲_time.geekbang](https://learn.lianglianglee.com/专栏/Java核心技术面试精讲)
+
+[Java技术之高频面试题-v2023.2_atguigu](https://www.wolai.com/miG7fA1qKFy1r4UoRG54iG)
+
+
+
+
 
 
 
@@ -527,7 +567,7 @@ IT资产：
 
 
 
-### 面试题
+## 面试题
 
 
 
@@ -539,6 +579,8 @@ IT资产：
 @PropertySource(value = {"firm-model.properties"}, encoding = "UTF-8", ignoreResourceNotFound = true)
 
 ```
+
+
 
 ###### 自定义注解
 
@@ -581,7 +623,120 @@ public class RedisLockHander {
 
 
 
-#### 设计模式与算法
+###### Spring 中用到的设计模式有哪些？
+
+- BeanFactory：工厂模式。
+- 在Bean的创建中，Spring也为不同scope定义的对象，提供了单例和原型等模式实现。
+- AOP：代理模式、装饰器模式、适配器模式等。
+- 事件监听器：观察者模式
+- JdbcTemplate：模板模式
+
+
+
+
+
+###### @Transaction事务注解
+
+@Transaction事务隔离级别传播特性，在项目中实际使用到的注解？
+
+@Transactional的propagation参数解释
+
+* 示例：@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+* 传播行为（propagation behavior）
+  * PROPAGATION_REQUIRED
+  * PROPAGATION_SUPPORTS
+  * PROPAGATION_MANDATORY
+  * PROPAGATION_REQUIRED_NEW
+  * PROPAGATION_NOT_SUPPORTED
+  * PROPAGATION_NEVER
+  * PROPAGATION_NESTED
+
+
+
+
+
+#### Java
+
+###### Stream常用方法
+
+map，filter，forEach，limit/skip，distinct
+
+* 遍历操作(map)：.stream().map().collect()
+* 过滤操作(filter)：.stream().filter() .collect()
+* 循环操作(forEach): .stream().forEach()
+* 返回特定的结果集合（limit/skip）：.stream().skip().limit().collect()
+* 排序（sort/min/max/distinct）：.stream().distinct().collect()
+
+
+
+###### Java创建内部类的方式？
+
+非静态内部类
+
+```java
+public class Outerclass {
+  public  class innerclass{
+        public void  to() {
+            System.out.println(name);
+        }
+    }
+  public static void main(String[] args) {
+        Outerclass q = new Outerclass();
+        Outerclass.innerclass c = q.new innerclass();
+        c.to();
+    }
+}
+```
+
+
+
+静态内部类
+
+```java
+public class Outerclass {
+    public static  class innerclass {
+        public void  to() {
+            System.out.println(name);
+        }
+    }
+    public static void main(String[] args) {
+        innerclass q = new innerclass();
+    }
+ 
+}
+```
+
+
+
+
+
+#### MySQL
+
+###### MySQL组合索引的使用规则？
+
+mysql (a,b,c) 索引生效 请问哪些索引生效（）
+
+生效的规则是：从前往后依次使用生效，如果中间某个索引没有使用，那么断点前面的索引部分起作用，断点后面的索引没有起作用； 比如:
+
+```sql
+-- 
+where a=3 and b=45 and c=5 .... 这种三个索引顺序使用中间没有断点，全部发挥作用；
+where a=3 and c=5... 这种情况下b就是断点，a发挥了效果，c没有效果
+where b=3 and c=4... 这种情况下a就是断点，在a后面的索引都没有发挥作用，这种写法联合索引没有发挥任何效果；
+where b=45 and a=3 and c=5 .... 这个跟第一个一样，全部发挥作用，abc只要用上了就行，跟写的顺序无关
+
+-- 
+(6)    select * from mytable where a=3 order by b;
+a用到了索引，b在结果排序中也用到了索引的效果，前面说了，a下面任意一段的b是排好序的
+(8)    select * from mytable where b=3 order by a;
+b没有用到索引，排序中a也没有发挥索引效果
+```
+
+
+
+
+
+#### 设计模式
 
 ###### 用到过哪些设计模式？
 
@@ -631,27 +786,23 @@ public class ServiceProxy<T> implements InvocationHandler {
 
 
 
-###### @Transaction事务注解
+#### 数据结构与算法
 
-@Transaction事务隔离级别传播特性，在项目中实际使用到的注解？
 
-@Transactional的propagation参数解释
 
-* 示例：@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-* 传播行为（propagation behavior）
-  * PROPAGATION_REQUIRED
-  * PROPAGATION_SUPPORTS
-  * PROPAGATION_MANDATORY
-  * PROPAGATION_REQUIRED_NEW
-  * PROPAGATION_NOT_SUPPORTED
-  * PROPAGATION_NEVER
-  * PROPAGATION_NESTED
+###### 冒泡排序
+
+相邻两个元素排序
+
+
 
 
 
 #### 组件
 
 
+
+##### Redis
 
 ###### Redis实际使用到哪些数据结构？
 
@@ -685,6 +836,38 @@ public class ServiceProxy<T> implements InvocationHandler {
   ```
 
 
+
+###### Redis与MySQL双写一致性如何保证？
+
+* 延时双删策略
+
+  * 在写库前后都进行redis.del(key)操作，并且设定合理的超时时间。具体步骤是：
+
+  * 1）先删除缓存
+
+  * 2）再写数据库
+
+  * 3）休眠500毫秒（根据具体的业务时间来定）
+
+  * 4）再次删除缓存。
+
+* 设置缓存的过期时间
+
+* 如何写完数据库后，再次删除缓存成功？
+
+  * （1）更新数据库数据；
+
+    （2）数据库会将操作信息写入binlog日志当中；
+
+    （3）订阅程序提取出所需要的数据以及key；
+
+    （4）另起一段非业务代码，获得该信息；
+
+    （5）尝试删除缓存操作，发现删除失败；
+
+    （6）将这些信息发送至消息队列；
+
+    （7）重新从消息队列中获得该数据，重试操作。
 
 
 
