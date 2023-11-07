@@ -14,7 +14,6 @@ keywords: Resume
 
 ---
 
-
 # Interview_Java_总结篇
 
 
@@ -625,7 +624,9 @@ Spring的基础机制：
 
 从Bean创建过程可以看到，它的依赖关系都是由容器负责注入，具体实现方式包括带参数的构造函数、setter方法或者[AutoWired](https://docs.spring.io/spring-framework/docs/5.0.3.RELEASE/javadoc-api/org/springframework/beans/factory/annotation/Autowired.html)方式实现。
 
-- AOP，我们已经在前面接触过这种切面编程机制，Spring框架中的事务、安全、日志等功能都依赖于AOP技术。
+- AOP，Spring框架中的事务、安全、日志等功能都依赖于AOP技术。
+
+切面编程落实到软件工程其实是为了更好地模块化，而不仅仅是为了减少重复代码。通过AOP等机制，我们可以把横跨多个不同模块的代码抽离出来，让模块本身变得更加内聚，进而业务开发者可以更加专注于业务逻辑本身。我们可以通过切面的方式进行修改或者新增功能。
 
 
 
