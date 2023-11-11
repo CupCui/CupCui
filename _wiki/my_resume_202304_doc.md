@@ -14,6 +14,7 @@ keywords: Resume
 
 ---
 
+
 # Interview_Java_总结篇
 
 
@@ -83,6 +84,53 @@ IP地址管理：
 
 
 
+#### 技术在项目中的应用
+
+##### redis
+
+* Redis在项目中把部分热点类型的数据全量放到redis中，作为缓存数据库使用。如Linux、MySQL、VMWare等采集的资源。
+* 非热点类型的数据设置缓存过期时间。如平板电脑、打印机等资产。
+
+##### MySQL
+
+分库分表
+
+你的项目里该如何分库分表？一般来说，垂直拆分，你可以在表层面来做，对一些字段特别多的表做一下拆分；
+
+**垂直拆分**的意思，就是**把一个有很多字段的表给拆分成多个表**，**或者是多个库上去**。（把一个大表拆开，订单表、订单支付表、订单商品表。）
+
+
+
+
+
+#### 组件部署
+
+##### redis
+
+Redis需要三主三从，用三台机器，开6个redis进程，模拟6台机器。
+
+##### kafka
+
+Kafka 部署3个节点
+
+##### Elasticsearch
+
+elasticsearch部署3个节点
+
+
+
+端口仅供参考
+
+在下面安装：
+
+Redis 供redis客户端访问端口7000，7001，7002，7003，7004，7005
+
+kafka使用的端口是45060、45061、45062
+
+Zookeeper供客户端访问端口45010、45011、45012
+
+elasticsearch供客户端访问端口45070、45071、45072
+
 
 
 ### Interview
@@ -133,7 +181,7 @@ Docker常用命令？
 
 MyBatis：
 
-* #和$区别
+* #和$区别：[参考](https://juejin.cn/post/6844904017269620744)
 * 一级二级缓存
 * 分页方式有哪几种
 
@@ -171,13 +219,9 @@ MyBatis使用的基本步骤？
 
 ##### Java
 
-线程池核心线程数根据什么配置？
-
 [Synchronized 修饰普通方法和静态方法有什么区别？](#Synchronized 修饰普通方法和静态方法有什么区别？)
 
 [Java创建内部类的方式？](#Java创建内部类的方式？)
-
-
 
 [synchronized和ReentrantLock有什么区别呢？](#synchronized和ReentrantLock有什么区别呢？)
 
@@ -195,7 +239,9 @@ MyBatis使用的基本步骤？
 
 [性能问题：内存持续上升，我该如何排查问题？](#性能问题：内存持续上升，我该如何排查问题？)
 
+[通常线程有哪几种使用方式?](#通常线程有哪几种使用方式?)
 
+[Java IO 模型](#Java IO 模型)
 
 
 
@@ -284,20 +330,6 @@ InnoDB 使用了 B+ 树索引模型。
 
 
 
-
-### Java IO 模型
-
-BIO、NIO、NIO 2（AIO）。
-
-BIO：传统的 java.io 包，它基于流模型实现。交互方式是同步、阻塞的方式，在读、写动作完成之前，线程会一直阻塞在那里。
-
-NIO：可以构建多路复用的、同步非阻塞 IO 程序。
-
-NIO 2：异步 IO 操作基于事件和回调机制。
-
-
-
-[Java提供了哪些IO方式？ NIO如何实现多路复用？](https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/Java%20%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/11%20%20Java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F%EF%BC%9F%20NIO%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%EF%BC%9F-%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4.md)
 
 
 
@@ -403,14 +435,6 @@ limit 3;
 设计模式
 
 VUE
-
-
-
-## 八股文汇总
-
-[Java核心技术面试精讲_time.geekbang](https://learn.lianglianglee.com/专栏/Java核心技术面试精讲)
-
-[Java技术之高频面试题-v2023.2_atguigu](https://www.wolai.com/miG7fA1qKFy1r4UoRG54iG)
 
 
 
@@ -902,8 +926,8 @@ CopyOnWriteArrayList:
 
 线程池大小的选择策略：
 
-* CPU密集型：按照CPU核的数目N或者N+1。
-* I/O密集型：线程数 = CPU核数 × 目标CPU利用率 ×（1 + 平均等待时间/平均工作时间）
+* CPU密集型：尽可能少的线程，Ncpu+1
+* I/O密集型：IO密集型: 尽可能多的线程, Ncpu*2，比如数据库连接池
 
 
 
@@ -953,6 +977,34 @@ JVM内存区域的划分
 
 
 
+##### Java IO 模型
+
+BIO、NIO、NIO 2（AIO）。
+
+BIO：传统的 java.io 包，它基于流模型实现。交互方式是同步、阻塞的方式，在读、写动作完成之前，线程会一直阻塞在那里。
+
+NIO：可以构建多路复用的、同步非阻塞 IO 程序。
+
+NIO 2：异步 IO 操作基于事件和回调机制。
+
+
+
+[Java提供了哪些IO方式？ NIO如何实现多路复用？](https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/Java%20%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/11%20%20Java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F%EF%BC%9F%20NIO%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%EF%BC%9F-%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4.md)
+
+
+
+##### 通常线程有哪几种使用方式?
+
+有三种使用线程的方法:
+
+- 实现 Runnable 接口；
+- 实现 Callable 接口；
+- 继承 Thread 类。
+
+
+
+
+
 #### MySQL
 
 ##### MySQL支持的事务隔离级别
@@ -972,7 +1024,7 @@ mysql (a,b,c) 索引生效 请问哪些索引生效（）
 
 生效的规则是：从前往后依次使用生效，如果中间某个索引没有使用，那么断点前面的索引部分起作用，断点后面的索引没有起作用； 比如:
 
-```sql
+```
 -- 
 where a=3 and b=45 and c=5 .... 这种三个索引顺序使用中间没有断点，全部发挥作用；
 where a=3 and c=5... 这种情况下b就是断点，a发挥了效果，c没有效果
@@ -996,7 +1048,7 @@ b没有用到索引，排序中a也没有发挥索引效果
 
 单例模式
 
-```json
+```
 纯Java项目中（CMDB SDK）：
 1. redis消息订阅（MsgSubscriManager extends JedisPubSub），使用单例模式
 2. 读取Apollo中配置，使用单例模式
@@ -1006,7 +1058,7 @@ b没有用到索引，排序中a也没有发挥索引效果
 
 [设计模式之----匹配器处理器模式（Matcher-Handler）的理解](https://blog.csdn.net/ws9029/article/details/117229616)
 
-```json
+```java
 策略模式的升级版（matcher-handler）,Matcher-Handler模式也是属于略模式的一种.
 isMatcher()
 prcoess()
@@ -1016,7 +1068,7 @@ private List<IResMsgHandle> resHandlers;
 
 代理模式
 
-```json
+```java
 // 接口实例工厂，这里主要是用于提供接口的实例对象
 public class ServiceFactory<T> implements FactoryBean<T> {
     @Override
@@ -1209,9 +1261,15 @@ CAP 定理
 
 * 一致性（Consistency）：在分布式系统中的所有数据备份，在同一时刻是否同样的值。（等同于所有节点访问同一份最新的数据副本）（意思是，写操作之后的读操作，必须返回该值。）
 
-* 可用性（Availability）：在集群中一部分节点故障后，集群整体是否还能响应客户端的读写请求。（对数据更新具备高可用性）（意思是只要收到用户的请求，服务器就必须给出回应。）
+* 可用性（Availability）：在集群中一部分节点故障后，集群整体是否还能响应客户端的读写请求。（每次请求都能获取到非错的响应——但是不保证获取的数据为最新数据）（意思是只要收到用户的请求，服务器就必须给出回应。）
 
 * 分区容错性（Partition tolerance）：以实际效果而言，分区相当于对通信的时限要求。系统如果不能在时限内达成数据一致性，就意味着发生了分区的情况，必须就当前操作在C和A之间做出选择。（意思是，区间通信可能失败。）
+
+- C：数据一致性；
+- A：服务可用性；
+- P：服务对网络分区故障的容错性
+
+
 
 Eureka是满足`AP`的：
 
@@ -1219,6 +1277,8 @@ Eureka是满足`AP`的：
 
 - 各个节点都是平等的，几个节点挂掉不会影响正常节点的工作，剩余的节点依然可以提供注册和查询服务
 - 在向某个Eureka注册时如果发现连接失败，则会自动切换至其它节点，只要有一台Eureka还在，就能保证注册服务可用(保证可用性)，只不过查到的信息可能不是最新的(不保证强一致性)
+
+
 
 Eureka服务宕机了怎么办：
 
@@ -1228,6 +1288,44 @@ Eureka服务宕机了怎么办：
 
 
 
+#### Kafka
+
+##### 为什么使用消息队列
+
+**异步**、**削峰**、**解耦**。
+
+##### 如何保证消息队列的高可用？
+
+Kafka 由多个 broker 组成。创建的 topic 划分为多个 partition，每个 partition 可以存在于不同的 broker 上。
+
+Kafka 提供了 HA 机制，就是 replica 副本机制。每个 partition 的数据都会同步到其它机器上，形成自己的多个 replica 副本。所有 replica 会选举一个 leader 出来，那么生产和消费都跟这个 leader 打交道。写的时候，leader 会负责把数据同步到所有 follower 上去，读的时候就直接读 leader 上的数据即可。如果某个 broker 宕机了，那么此时会从 follower 中**重新选举**一个新的 leader 出来。
+
+##### 如何保证消息不被重复消费？
+
+或者说，如何保证消息消费的幂等性？
+- 比如你拿个数据要写库，你先根据主键查一下，如果这数据都有了，你就别插入了，update 一下好吧。
+- 比如你是写 Redis，那没问题了，反正每次都是 set，天然幂等性。
+- 比如你不是上面两个场景，那做的稍微复杂一点，你需要让生产者发送每条数据的时候，里面加一个全局唯一的 id，类似订单 id 之类的东西，然后你这里消费到了之后，先根据这个 id 去比如 Redis 里查一下，之前消费过吗？如果没有消费过，你就处理，然后这个 id 写 Redis。如果消费过了，那你就别处理了，保证别重复处理相同的消息即可。
+- 比如基于数据库的唯一键来保证重复数据不会重复插入多条。因为有唯一键约束了，重复数据插入只会报错，不会导致数据库中出现脏数据。
+
+##### 如何处理消息丢失的问题？
+
+或者说，如何保证消息的可靠性传输？
+
+消费端弄丢了数据
+**关闭自动提交** offset，在处理完之后自己手动提交 offset，就可以保证数据不会丢。
+
+Kafka 弄丢了数据
+Kafka 某个 broker 宕机，然后重新选举 partition 的 leader，follower 刚好还有些数据没有同步。
+
+设置如下 4 个参数：
+- 给 topic 设置 `replication.factor` 参数：这个值必须大于 1，要求每个 partition 必须有至少 2 个副本。
+- 在 Kafka 服务端设置 `min.insync.replicas` 参数：这个值必须大于 1，这个是要求一个 leader 至少感知到有至少一个 follower 还跟自己保持联系，没掉队，这样才能确保 leader 挂了还有一个 follower 吧。
+- 在 producer 端设置 `acks=all` ：这个是要求每条数据，必须是**写入所有 replica 之后，才能认为是写成功了**。
+- 在 producer 端设置 `retries=MAX` （很大很大很大的一个值，无限次重试的意思）：这个是**要求一旦写入失败，就无限重试**，卡在这里了。
+
+生产者会不会弄丢数据？
+设置了 `acks=all` ，一定不会丢，要求是，你的 leader 接收到消息，所有的 follower 都同步到了消息之后，才认为本次写成功了。如果没满足这个条件，生产者会自动不断的重试，重试无限次。
 
 
 #### ElasticSearch
@@ -1310,4 +1408,3 @@ Elasticsearch的内置分词器
 - Keyword Analyzer - 不分词，直接将输入当作输出
 - Patter Analyzer - 正则表达式，默认\W+(非字符分割)
 - Customer Analyzer 自定义分词器
-
