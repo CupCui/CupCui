@@ -2,7 +2,7 @@
 #   Main Configs   #
 # ---------------- #
 baseurl:
-url: http://cupcupcui.top/
+url: https://cupcui.github.io/
 date_format: "ordinal"
 title: CupCui
 subtitle: "Simple, and good enough."
